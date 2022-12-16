@@ -60,7 +60,7 @@ jobs:
         run: |
           BRANCH="${GITHUB_BASE_REF#refs/heads/}"
           echo "Building for $BRANCH"
-          echo "BRANCH=master" >> $GITHUB_ENV
+          echo "BRANCH=$BRANCH" >> $GITHUB_ENV
 
       - name: Determine changed packages
         run: |
@@ -89,7 +89,7 @@ jobs:
       - name: Build
         uses: openwrt/gh-action-sdk@v5
         env:
-          ARCH: ${{ matrix.arch }}-${{ env.BRANCH }}
+          ARCH: ${{ matrix.arch }}-master
           FEEDNAME: packages_ci
 
       - name: Move created packages to project dir
