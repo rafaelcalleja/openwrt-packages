@@ -60,7 +60,7 @@ jobs:
         run: |
           BRANCH="${GITHUB_BASE_REF#refs/heads/}"
           echo "Building for $BRANCH"
-          echo "BRANCH=$BRANCH" >> $GITHUB_ENV
+          echo "BRANCH=master" >> $GITHUB_ENV
 
       - name: Determine changed packages
         run: |
