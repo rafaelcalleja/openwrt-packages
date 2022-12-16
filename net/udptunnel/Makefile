@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME := udptunnel
 PKG_VERSION := 0.0.1
-PKG_RELEASE := 1
+PKG_RELEASE := 2
 
 PKG_SOURCE_PROTO := git
 PKG_SOURCE_URL := https://github.com/rfc1036/udptunnel.git
