@@ -4,14 +4,11 @@ PKG_NAME := udptunnel
 PKG_VERSION := 0.0.1
 PKG_RELEASE := 1
 
-PKG_SOURCE := $(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL := https://github.com/rafaelcalleja/udptunnel/archive/refs/tags/$(PKG_VERSION)
-PKG_HASH := 23968c27c8c6cc2e45ef2ef7b934813fc83410cd235e0503373e98ebbabf68c7
-#PKG_BUILD_DIR := $(BUILD_DIR)/udptunnel-$(PKG_VERSION)/.pkgdir
-#PKG_BUILD_DIR := /tmp
-#PKG_CONFIG_DEPENDS := libuuid
-
-#MAKE_PATH := src
+PKG_SOURCE_PROTO := git
+PKG_SOURCE_URL := https://github.com/rfc1036/udptunnel.git
+PKG_SOURCE_DATE := 2018-11-18
+PKG_SOURCE_VERSION := 482ed94388a0dde68561584926c7d5c14f079f7e
+PKG_MIRROR_HASH := 3d3647c68782107b78dbcd98274b70475862d1646635e470c766db24795172f7
 PKG_INSTALL := 1
 
 include $(INCLUDE_DIR)/package.mk
