@@ -1,0 +1,93 @@
+Package: libatomic
+Version: 7.3.0-2
+Depends: libgcc
+Source: package/toolchain
+License: GPL-3.0-with-GCC-exception
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: mipsel_24kc
+Installed-Size: 5246
+Filename: libatomic_7.3.0-2_mipsel_24kc.ipk
+Size: 5962
+SHA256sum: 2e968ef8bff1fe1ca0137d2419edfd703bc11654f1f5ff8932388cbd454276c2
+Description:  Atomic support library
+
+Package: libgcc
+Version: 7.3.0-2
+Source: package/toolchain
+License: GPL-3.0-with-GCC-exception
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: mipsel_24kc
+Installed-Size: 34137
+Filename: libgcc_7.3.0-2_mipsel_24kc.ipk
+Size: 34921
+SHA256sum: fa17864a778c350e154fedb05158d857453f9ddcdee31440df90e59a9ef25ba4
+Description:  GCC support library
+
+Package: libpthread
+Version: 1.1.19-2
+Depends: libgcc
+Source: package/toolchain
+License: GPL-3.0-with-GCC-exception
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: mipsel_24kc
+Installed-Size: 116
+Filename: libpthread_1.1.19-2_mipsel_24kc.ipk
+Size: 854
+SHA256sum: 88b6e40096f164e7aec26fb1a0be6088d826b7c87fe6b1297e78bc4ba5d69f08
+Description:  POSIX thread library
+
+Package: librt
+Version: 1.1.19-2
+Depends: libpthread
+Source: package/toolchain
+License: GPL-3.0-with-GCC-exception
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: mipsel_24kc
+Installed-Size: 116
+Filename: librt_1.1.19-2_mipsel_24kc.ipk
+Size: 863
+SHA256sum: 29248879f3928f3591601f0812859c69a417cdc016ca87c594a200477fec43b8
+Description:  POSIX.1b RealTime extension library
+
+Package: libstdcpp
+Version: 7.3.0-2
+Source: package/toolchain
+License: GPL-3.0-with-GCC-exception
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: mipsel_24kc
+Installed-Size: 367382
+Filename: libstdcpp_7.3.0-2_mipsel_24kc.ipk
+Size: 366303
+SHA256sum: c08dd2fe5fc35fb184c8bf6186d5e8ee499166c8ccacb9b14854d9e7eb51bc05
+Description:  GNU Standard C++ Library v3
+
+Package: udptunnel
+Version: 0.0.1-2
+Depends: libc
+Source: /feed/net/udptunnel
+Section: net
+Architecture: mipsel_24kc
+Installed-Size: 6729
+Filename: udptunnel_0.0.1-2_mipsel_24kc.ipk
+Size: 7541
+SHA256sum: 1c96caf645b3a356d76222e8ba9ea37fe94e38db33d29135f52a7e4c38aa51d8
+Description:  UDPTunnel is a small program which can tunnel UDP packets bi-directionally
+ over a TCP connection. Its primary purpose (and original motivation) is to
+ allow multi-media conferences to traverse a firewall which allows only outgoing
+ TCP connections.
+
