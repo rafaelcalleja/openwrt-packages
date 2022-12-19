@@ -28,7 +28,7 @@ jobs:
 
           - arch: mipsel_24kc
             target: mt7621
-            container: openwrtorg
+            container: openwrtorg/sdk
           #
           #- arch: powerpc_464fp
           #  target: apm821xx-nand
