@@ -2,7 +2,9 @@ name: Generate downloads repository
 
 on:
   push:
-    branch: main
+    branch:
+      - main
+      - 'openwrt-*'
 
 jobs:
   pages-release:
@@ -26,7 +28,6 @@ jobs:
 
           - arch: mipsel_24kc
             target: mt7621
-            branch: master
           #
           #- arch: powerpc_464fp
           #  target: apm821xx-nand
@@ -55,6 +56,16 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: Determine branch name
+        run: |
+          BRANCH="${GITHUB_BASE_REF#refs/heads/}"
+          
+          if [ "$BRANCH" == "main" ]; then
+          BRANCH=master            
+          fi
+          
+          echo "Building for $BRANCH"
+          echo "BRANCH=$BRANCH" >> $GITHUB_ENV
       - name: Determine changed packages
         run: |
           PKG_ROOTS=$(find . -name Makefile | \
@@ -72,11 +83,11 @@ jobs:
 
           echo "Building $PACKAGES"
           echo "PACKAGES=$PACKAGES" >> $GITHUB_ENV
-          echo "ARCHIVE_NAME=${{ matrix.arch }}-${{ matrix.branch }}" >> $GITHUB_ENV
+          echo "ARCHIVE_NAME=${{ matrix.arch }}-${{ env.BRANCH }}" >> $GITHUB_ENV
       - name: Compile packages in the feed
         uses: rafaelcalleja/gh-action-sdk@0.0.1
         env:
-          ARCH: ${{ matrix.arch }}-master
+          ARCH: ${{ matrix.arch }}-${{ env.BRANCH }}
           FEEDNAME: packages_ci
           NO_DEFAULT_FEEDS: true
           NO_REFRESH_CHECK: true
@@ -84,8 +95,6 @@ jobs:
           PACKAGES: ${{ env.PACKAGES }}
           V: s
 
-      - name: test
-        run: ls -la
       - name: Store targets
         uses: actions/upload-artifact@v3
         with:
@@ -100,10 +109,10 @@ jobs:
       - name: Deploy created packages to gh-pages
         run: |
           git checkout gh-pages 
-          mkdir -p resources/18.06.2/targets -p
+          mkdir -p "resources/${{ env.BRANCH }}/targets" -p
           find targets/ || true
           find /artifacts/ || true          
-          mv bin/targets/* resources/18.06.2/targets
+          mv bin/targets/* "resources/${{ env.BRANCH }}/targets"
           git config user.name  github-actions
           git config user.email github-actions@github.com
           git add resources
