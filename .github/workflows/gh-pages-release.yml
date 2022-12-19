@@ -84,16 +84,19 @@ jobs:
           PACKAGES: ${{ env.PACKAGES }}
           V: s
 
+      - name: test
+        run: ls -la
       - name: Store targets
         uses: actions/upload-artifact@v3
         with:
           name: ${{env.ARCHIVE_NAME}}-targets
-          path: targets/
+          path: bin/targets/
+          if-no-files-found: error
 
       - uses: actions/download-artifact@v3
         with:
           name: ${{env.ARCHIVE_NAME}}-targets
-          path: targets/
+          path: bin/targets/
       - name: Deploy created packages to gh-pages
         run: |
           git checkout gh-pages 
