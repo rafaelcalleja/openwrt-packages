@@ -1,7 +1,8 @@
 name: Generate downloads repository
 
 on:
-  branch: main
+  push:
+    branch: main
 
 jobs:
   pages-release:
