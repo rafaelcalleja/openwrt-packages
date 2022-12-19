@@ -26,7 +26,7 @@ jobs:
 
           - arch: mipsel_24kc
             target: mt7621
-            runtime_test: false
+            branch: master
           #
           #- arch: powerpc_464fp
           #  target: apm821xx-nand
@@ -72,6 +72,7 @@ jobs:
 
           echo "Building $PACKAGES"
           echo "PACKAGES=$PACKAGES" >> $GITHUB_ENV
+          echo "ARCHIVE_NAME=${{ matrix.arch }}-${{ matrix.branch }}" >> $GITHUB_ENV
       - name: Compile packages in the feed
         uses: rafaelcalleja/gh-action-sdk@0.0.1
         env:
