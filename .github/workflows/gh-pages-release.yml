@@ -80,7 +80,7 @@ jobs:
           NO_DEFAULT_FEEDS: true
           NO_REFRESH_CHECK: true
           NO_SHFMT_CHECK: true
-          PACKAGES: ${{ env.$PACKAGES }}
+          PACKAGES: ${{ env.PACKAGES }}
           V: s
 
       - name: Store targets
