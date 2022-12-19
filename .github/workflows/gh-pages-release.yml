@@ -28,6 +28,7 @@ jobs:
 
           - arch: mipsel_24kc
             target: mt7621
+            container: openwrtorg
           #
           #- arch: powerpc_464fp
           #  target: apm821xx-nand
@@ -91,6 +92,7 @@ jobs:
       - name: Compile packages in the feed
         uses: rafaelcalleja/gh-action-sdk@0.0.1
         env:
+          CONTAINER: ${{ matrix.container }}
           ARCH: ${{ matrix.arch }}-${{ env.BRANCH }}
           FEEDNAME: packages_ci
           NO_DEFAULT_FEEDS: true
