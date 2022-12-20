@@ -59,7 +59,6 @@ jobs:
         run : |
           set -x
           export KEY_BUILD="$(cat keys/key-build)"
-          gh auth login
           gh secret set TOKEN_KEY_BUILD_PRIVATE --body "$KEY_BUILD"
           rm /artifacts/keys/key-build
       - name: Commit Keys
