@@ -31,13 +31,15 @@ jobs:
       - name: GENERATE KEY_BUILD
         if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
         uses: rafaelcalleja/docker-run-action@v3
+        env:
+          GITHUB_REPOSITORY: ${{ github.action_repository }}
         with:
           image: openwrt/sdk:latest
           options: -e GITHUB_REPOSITORY -e GH_TOKEN -v ${{ steps.inputs.outputs.artifacts_dir }}:/artifacts
           run: |
             set -x
             mkdir -p /artifacts/keys/
-            ./staging_dir/host/bin/usign -G -s /artifacts/keys/key-build -p /artifacts/keys/key-build.pub -c "build key ${{ github.action_repository }}:${{ github.sha }}"
+            ./staging_dir/host/bin/usign -G -s /artifacts/keys/key-build -p /artifacts/keys/key-build.pub -c "build key $GITHUB_REPOSITORY:${{ github.sha }}"
             FINGERPRINT=$(./staging_dir/host/bin/usign -F -p /artifacts/keys/key-build.pub)
             mv /artifacts/keys/key-build.pub /artifacts/keys/$FINGERPRINT
       - run: sudo chown -R --reference=${{ steps.inputs.outputs.artifacts_dir }}/.. ${{ steps.inputs.outputs.artifacts_dir }}
