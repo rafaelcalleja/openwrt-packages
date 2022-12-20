@@ -6,12 +6,6 @@ on:
       - main
       - 'openwrt-*'
 
-permissions:
-  id-token: write
-  actions: write
-  contents: write
-  security-events: write
-
 jobs:
   key-generation:
     runs-on: ubuntu-latest
