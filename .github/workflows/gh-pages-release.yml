@@ -6,8 +6,6 @@ on:
       - main
       - 'openwrt-*'
 
-permissions: write-all
-
 jobs:
   key-generation:
     runs-on: ubuntu-latest
@@ -53,7 +51,7 @@ jobs:
             export KEY_BUILD_PUBLIC=$(cat /artifacts/keys/$FINGERPRINT)"
             gh auth login
             gh secret set TOKEN_KEY_BUILD_PRIVATE --body "$KEY_BUILD"
-            gh secret set TOKEN_KEY_BUILD_PUBLIC --body "$PUBLIC"
+            gh secret set TOKEN_KEY_BUILD_PUBLIC --body "$KEY_BUILD_PUBLIC"
             rm /artifacts/keys/key-build
       - run: sudo chown -R --reference=${{ steps.inputs.outputs.artifacts_dir }}/.. ${{ steps.inputs.outputs.artifacts_dir }}
         shell: bash
