@@ -5,8 +5,8 @@ on:
     branch:
       - main
       - 'openwrt-*'
-  permissions:
-    contents: write
+permissions:
+  contents: write
 
 jobs:
   key-generation:
