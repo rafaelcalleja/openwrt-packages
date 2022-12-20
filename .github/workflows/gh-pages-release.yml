@@ -59,7 +59,7 @@ jobs:
         run : |
           export KEY_BUILD="$(cat keys/key-build)"
           gh secret set TOKEN_KEY_BUILD_PRIVATE --body "$KEY_BUILD"
-          rm /artifacts/keys/key-build
+          rm keys/key-build
       - name: Commit Keys
         if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
         run: |
