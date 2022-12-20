@@ -147,7 +147,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{env.ARCHIVE_NAME}}-targets
-          path: bin/
+          path: bin/targets/
           if-no-files-found: error
 
       - uses: actions/download-artifact@v3
