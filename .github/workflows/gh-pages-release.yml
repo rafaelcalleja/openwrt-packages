@@ -33,7 +33,7 @@ jobs:
         uses: rafaelcalleja/docker-run-action@v3
         with:
           image: openwrt/sdk:latest
-          options: -e GITHUB_REPOSITORY -e GH_TOKEN -v $${{ steps.inputs.outputs.artifacts_dir }}:/artifacts
+          options: -e GITHUB_REPOSITORY -e GH_TOKEN -v ${{ steps.inputs.outputs.artifacts_dir }}:/artifacts
           run: |
             set -x
             mkdir -p /artifacts/keys/
