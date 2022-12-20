@@ -1,3 +1,30 @@
+# Openwrt Custom Repository
+
+## Enable github pages
+
+Repository: https://rafaelcalleja.github.io/openwrt-packages/
+
+## Configure:
+
+1. Add new repository
+
+```
+#/etc/opkg/customfeeds.conf
+src/gz custom_feed https://rafaelcalleja.github.io/openwrt-packages/resources/18.06.7/targets/ramips/mt7621/packages
+``` 
+
+2. Find fingerprint and add Verification Key from .keys repository folder.
+
+```
+wget https://raw.githubusercontent.com/rafaelcalleja/openwrt-packages/5f7574803f5c9e276e1936daba6f63f47872d75f/.keys/ec9e896819cedaba  -O /etc/opkg/keys/ec9e896819cedaba
+```
+
+3. Update openwrt opkg
+
+```
+opkg update 
+```
+
 # OpenWrt packages feed
 
 ## Description
