@@ -16,7 +16,7 @@ src/gz custom_feed https://rafaelcalleja.github.io/openwrt-packages/resources/18
 2. Find fingerprint and add Verification Key from .keys repository folder.
 
 ```
-wget https://raw.githubusercontent.com/rafaelcalleja/openwrt-packages/5f7574803f5c9e276e1936daba6f63f47872d75f/.keys/ec9e896819cedaba  -O /etc/opkg/keys/ec9e896819cedaba
+wget https://raw.githubusercontent.com/rafaelcalleja/openwrt-packages/main/.keys/7b1392757f69d862  -O /etc/opkg/keys/7b1392757f69d862
 ```
 
 3. Update openwrt opkg
