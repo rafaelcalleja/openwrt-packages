@@ -6,6 +6,8 @@ on:
       - main
       - 'openwrt-*'
 
+permissions: write-all
+
 jobs:
   key-generation:
     runs-on: ubuntu-latest
@@ -37,7 +39,7 @@ jobs:
           run: |
             set -x
             mkdir -p /artifacts/keys/
-            ./staging_dir/host/bin/usign -G -s /artifacts/keys/key-build -p /artifacts/keys/key-build.pub -c "build key ${{ env.GITHUB_REPOSITORY }}:${{ github.sha }}"
+            ./staging_dir/host/bin/usign -G -s /artifacts/keys/key-build -p /artifacts/keys/key-build.pub -c "build key ${{ github.action_repository }}:${{ github.sha }}"
             FINGERPRINT=$(./staging_dir/host/bin/usign -F -p /artifacts/keys/key-build.pub)
             mv /artifacts/keys/key-build.pub /artifacts/keys/$FINGERPRINT
       - run: sudo chown -R --reference=${{ steps.inputs.outputs.artifacts_dir }}/.. ${{ steps.inputs.outputs.artifacts_dir }}
