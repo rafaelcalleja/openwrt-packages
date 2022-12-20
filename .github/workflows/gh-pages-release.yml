@@ -42,6 +42,7 @@ jobs:
             mv /artifacts/keys/key-build.pub /artifacts/keys/$FINGERPRINT
       - run: sudo chown -R --reference=${{ steps.inputs.outputs.artifacts_dir }}/.. ${{ steps.inputs.outputs.artifacts_dir }}
         shell: bash
+        if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
       - name: Store targets
         if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
         uses: actions/upload-artifact@v3
