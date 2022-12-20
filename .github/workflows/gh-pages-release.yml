@@ -76,6 +76,7 @@ jobs:
           git config user.email github-actions@github.com
           rm .keys/* -rf
           git rm -r .keys/*
+          mkdir -p .keys/
           cp keys/* .keys/
           git add .keys/*
           git commit -m "bump key build public"
