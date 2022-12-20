@@ -53,6 +53,8 @@ jobs:
             gh secret set TOKEN_KEY_BUILD_PRIVATE --body "$KEY_BUILD"
             gh secret set TOKEN_KEY_BUILD_PUBLIC --body "$PUBLIC"
             rm /artifacts/keys/key-build
+      - run: sudo chown -R --reference=${{ steps.inputs.outputs.artifacts_dir }}/.. ${{ steps.inputs.outputs.artifacts_dir }}
+        shell: bash
       - name: Store targets
         if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
         uses: actions/upload-artifact@v3
