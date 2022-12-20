@@ -158,9 +158,7 @@ jobs:
         run: |
           git checkout gh-pages 
           mkdir -p "resources/${{ env.BRANCH }}/targets" -p
-          find targets/ || true
-          find /artifacts/ || true          
-          mv bin/targets/* "resources/${{ env.BRANCH }}/targets"
+          cp -R bin/targets/* "resources/${{ env.BRANCH }}/targets"
           git config user.name  github-actions
           git config user.email github-actions@github.com
           git add resources
