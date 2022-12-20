@@ -55,12 +55,14 @@ jobs:
           name: generate-keys-${{ github.run_id }}
           path: keys/
       - name: Generate Secrets
+        if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
         run : |
-          export KEY_BUILD=$(cat keys/key-build)"
+          export KEY_BUILD="$(cat keys/key-build)"
           gh auth login
           gh secret set TOKEN_KEY_BUILD_PRIVATE --body "$KEY_BUILD"
           rm /artifacts/keys/key-build
       - name: Commit Keys
+        if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
         run: |
           find keys/
           git config user.name  github-actions
