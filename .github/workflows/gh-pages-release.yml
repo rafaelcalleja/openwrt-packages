@@ -10,7 +10,7 @@ jobs:
   key-generation:
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
       HAVE_TOKEN_KEY_PRIVATE: ${{ secrets.TOKEN_KEY_BUILD_PRIVATE != '' }}
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
@@ -57,14 +57,12 @@ jobs:
       - name: Generate Secrets
         if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
         run : |
-          set -x
           export KEY_BUILD="$(cat keys/key-build)"
           gh secret set TOKEN_KEY_BUILD_PRIVATE --body "$KEY_BUILD"
           rm /artifacts/keys/key-build
       - name: Commit Keys
         if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
         run: |
-          find keys/
           git config user.name  github-actions
           git config user.email github-actions@github.com
           rm .keys/* -rf
