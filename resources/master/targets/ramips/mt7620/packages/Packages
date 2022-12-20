@@ -1,72 +1,75 @@
 Package: libatomic1
-Version: 8.4.0-2
+Version: 11.3.0-4
 Depends: libgcc1
 Provides: libatomic
 License: GPL-3.0-with-GCC-exception
 Section: libs
+ABIVersion: 1
 Status: unknown hold not-installed
 Essential: yes
 Architecture: mipsel_24kc
-Installed-Size: 5378
-Filename: libatomic1_8.4.0-2_mipsel_24kc.ipk
-Size: 6146
-SHA256sum: 7acc026cfd11ec180b70f831d136295c9212708bc661510c29dd0260425faeac
+Installed-Size: 5501
+Filename: libatomic1_11.3.0-4_mipsel_24kc.ipk
+Size: 6272
+SHA256sum: 6cd1d5950b5e24fd236fcfbbb99339af54ae897ed24e0072ba3c7a5a12d1e0ed
 Description:  Atomic support library
 
 Package: libgcc1
-Version: 8.4.0-2
+Version: 11.3.0-4
 Provides: libgcc
 License: GPL-3.0-with-GCC-exception
 Section: libs
+ABIVersion: 1
 Status: unknown hold not-installed
 Essential: yes
 Architecture: mipsel_24kc
-Installed-Size: 34668
-Filename: libgcc1_8.4.0-2_mipsel_24kc.ipk
-Size: 35504
-SHA256sum: 3724aed54c89eebd2423d4b26de30700438f89eba98346944d35f5c5cf65900d
+Installed-Size: 33330
+Filename: libgcc1_11.3.0-4_mipsel_24kc.ipk
+Size: 34182
+SHA256sum: dc4ebf4985ccf3e5e34a13f9abc1dddf9731d667571de1215014dfbaf010bef2
 Description:  GCC support library
 
 Package: libpthread
-Version: 1.1.24-2
+Version: 1.2.3-4
 Depends: libgcc1
 License: GPL-3.0-with-GCC-exception
 Section: libs
 Status: unknown hold not-installed
 Essential: yes
 Architecture: mipsel_24kc
-Installed-Size: 117
-Filename: libpthread_1.1.24-2_mipsel_24kc.ipk
-Size: 877
-SHA256sum: 9b788a003d73b39b110b9f00d47a41d83dfe1900826b7fd5f762d1aea2c647c0
+Installed-Size: 118
+Filename: libpthread_1.2.3-4_mipsel_24kc.ipk
+Size: 874
+SHA256sum: 4b7911a5a3037a223858401774bf94394878c0d71c462658f477ca46e0209716
 Description:  POSIX thread library
 
 Package: librt
-Version: 1.1.24-2
+Version: 1.2.3-4
 Depends: libpthread
 License: GPL-3.0-with-GCC-exception
 Section: libs
 Status: unknown hold not-installed
 Essential: yes
 Architecture: mipsel_24kc
-Installed-Size: 117
-Filename: librt_1.1.24-2_mipsel_24kc.ipk
-Size: 886
-SHA256sum: a8f184900bf1263ccb68d56aecaffc76270114e7f426da242271b8b9b9e211ad
+Installed-Size: 118
+Filename: librt_1.2.3-4_mipsel_24kc.ipk
+Size: 890
+SHA256sum: 59099ff9eb9e85f0dd1bef634d6131f91b6e1e4522e868fabfa61c2d750d1c53
 Description:  POSIX.1b RealTime extension library
 
 Package: libstdcpp6
-Version: 8.4.0-2
+Version: 11.3.0-4
 Provides: libstdcpp
 License: GPL-3.0-with-GCC-exception
 Section: libs
+ABIVersion: 6
 Status: unknown hold not-installed
 Essential: yes
 Architecture: mipsel_24kc
-Installed-Size: 371453
-Filename: libstdcpp6_8.4.0-2_mipsel_24kc.ipk
-Size: 370207
-SHA256sum: 02592408aabcdcd1d40ae89902a77dadd3e4174ced0691dc9a37e69c6f950bb8
+Installed-Size: 542285
+Filename: libstdcpp6_11.3.0-4_mipsel_24kc.ipk
+Size: 540652
+SHA256sum: 9279fb7be89379ec70f554abc48996545cc073e8494f02ab1794f5a11eb37582
 Description:  GNU Standard C++ Library v3
 
 Package: udptunnel
@@ -74,10 +77,10 @@ Version: 0.0.1-2
 Depends: libc
 Section: net
 Architecture: mipsel_24kc
-Installed-Size: 6650
+Installed-Size: 6685
 Filename: udptunnel_0.0.1-2_mipsel_24kc.ipk
-Size: 7489
-SHA256sum: 9124ed37e072b5bf97b9aa8764dba4b377c2a34d6f880c0e1f0b93ffd02f14eb
+Size: 7526
+SHA256sum: c6e67d6ed00e6ec1f7304c9df6730cd358b63da59e13576efc345838e28c0f38
 Description:  UDPTunnel is a small program which can tunnel UDP packets bi-directionally
  over a TCP connection. Its primary purpose (and original motivation) is to
  allow multi-media conferences to traverse a firewall which allows only outgoing
