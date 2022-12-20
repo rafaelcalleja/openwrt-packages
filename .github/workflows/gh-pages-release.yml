@@ -7,12 +7,80 @@ on:
       - 'openwrt-*'
 
 jobs:
-  pages-release:
-    name: Main ${{ matrix.arch }}
+  key-generation:
     runs-on: ubuntu-latest
     env:
-      HAVE_TOKEN_KEY_PRIVATE: ${{ secrets.TOKEN_KEY_BUILD_PRIVATE != '' }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      HAVE_TOKEN_KEY_PRIVATE: ${{ secrets.TOKEN_KEY_BUILD_PRIVATE != '' }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: GENERATE KEY_BUILD
+        if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
+        uses: rafaelcalleja/docker-run-action@v3
+        with:
+          image: openwrt/sdk:latest
+          options: -e GITHUB_REPOSITORY -e GH_TOKEN -v ${{ github.workspace }}:/artifacts
+          run: |
+            mkdir -p /artifacts/keys/
+            ./staging_dir/host/bin/usign -G -s /artifacts/keys/key-build -p /artifacts/keys/key-build.pub -c "build key ${{ env.GITHUB_REPOSITORY }}:${{ github.sha }}"
+            FINGERPRINT=$(./staging_dir/host/bin/usign -F -p /artifacts/keys/key-build.pub)
+            mv /artifacts/keys/key-build.pub /artifacts/keys/$FINGERPRINT
+            type -p curl >/dev/null || sudo apt install curl -y
+            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+            sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+            sudo apt update
+            sudo apt install gh -y
+            cd /artifacts
+            export KEY_BUILD=$(cat /artifacts/keys/key-build)"
+            export KEY_BUILD_PUBLIC=$(cat /artifacts/keys/$FINGERPRINT)"
+            gh auth login
+            gh secret set TOKEN_KEY_BUILD_PRIVATE --body "$KEY_BUILD"
+            gh secret set TOKEN_KEY_BUILD_PUBLIC --body "$PUBLIC"
+            rm /artifacts/keys/key-build
+            #cp /work/key-build* /artifacts/
+            #git add ./key-build.pub
+            #git config user.name  github-actions
+            #git config user.email github-actions@github.com
+            #git add ./key-build.pub
+            #git commit -m "bump key build public"
+            #git push
+      - name: Store targets
+        if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: generate-keys-${{ github.run_id }}
+          path: keys/
+          if-no-files-found: error
+      - uses: actions/download-artifact@v3
+        if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
+        with:
+          name: generate-keys-${{ github.run_id }}
+          path: keys/
+      - name: Commit Keys
+        run: |
+          find keys/
+          git config user.name  github-actions
+          git config user.email github-actions@github.com
+          rm .keys/* -rf
+          git rm -r .keys/*
+          cp keys/* .keys/
+          git add .keys/*
+          git commit -m "bump key build public"
+          git push
+  pages-release:
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    needs:
+      - key-generation
+    name: Main ${{ matrix.arch }}
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -102,34 +170,7 @@ jobs:
           echo "ARCHIVE_NAME=${{ matrix.arch }}-${{ env.BRANCH }}" >> $GITHUB_ENV
           echo "ARCH=${{ matrix.arch }}-${{ env.BRANCH }}" >> $GITHUB_ENV
 
-      - name: GENERATE KEY_BUILD
-        if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
-        uses: addnab/docker-run-action@v3
-        with:
-          image: openwrt/sdk:latest
-          options: -v ${{ github.workspace }}:/work -e GH_TOKEN
-          run: |
-            env
-            ./staging_dir/host/bin/usign -G -s /work/key-build -p /work/key-build.pub -c "build key ${{ env.GITHUB_REPOSITORY }}"
-            type -p curl >/dev/null || sudo apt install curl -y
-            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-            && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-            && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-            && sudo apt update \
-            && sudo apt install gh -y
-            set -x
-            cd /work
-            export KEY_BUILD=$(cat ./key-build)"
-            export KEY_BUILD_PUBLIC=$(cat ./key-build.pub)"
-            gh auth login
-            gh secret set TOKEN_KEY_BUILD_PRIVATE --body "$KEY_BUILD"
-            gh secret set TOKEN_KEY_BUILD_PUBLIC --body "$PUBLIC"
-            git add ./key-build.pub
-            git config user.name  github-actions
-            git config user.email github-actions@github.com
-            git add ./key-build.pub
-            git commit -m "bump key build public"
-            git push
+
       - name: Compile packages in the feed
         uses: rafaelcalleja/gh-action-sdk@0.0.1
         env:
