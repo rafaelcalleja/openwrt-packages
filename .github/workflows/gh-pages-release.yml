@@ -19,13 +19,23 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+        if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
+      - run: |
+          echo "artifacts_dir=${ARTIFACTS_DIR:-$GITHUB_WORKSPACE}" >> "$GITHUB_OUTPUT"
+        shell: bash
+        id: inputs
+        if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
+      - run: sudo chown -R 1000:1000 ${{ steps.inputs.outputs.artifacts_dir }}
+        shell: bash
+        if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
       - name: GENERATE KEY_BUILD
         if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
         uses: rafaelcalleja/docker-run-action@v3
         with:
           image: openwrt/sdk:latest
-          options: -e GITHUB_REPOSITORY -e GH_TOKEN -v ${{ github.workspace }}:/artifacts
+          options: -e GITHUB_REPOSITORY -e GH_TOKEN -v $${{ steps.inputs.outputs.artifacts_dir }}:/artifacts
           run: |
+            set -x
             mkdir -p /artifacts/keys/
             ./staging_dir/host/bin/usign -G -s /artifacts/keys/key-build -p /artifacts/keys/key-build.pub -c "build key ${{ env.GITHUB_REPOSITORY }}:${{ github.sha }}"
             FINGERPRINT=$(./staging_dir/host/bin/usign -F -p /artifacts/keys/key-build.pub)
@@ -43,13 +53,6 @@ jobs:
             gh secret set TOKEN_KEY_BUILD_PRIVATE --body "$KEY_BUILD"
             gh secret set TOKEN_KEY_BUILD_PUBLIC --body "$PUBLIC"
             rm /artifacts/keys/key-build
-            #cp /work/key-build* /artifacts/
-            #git add ./key-build.pub
-            #git config user.name  github-actions
-            #git config user.email github-actions@github.com
-            #git add ./key-build.pub
-            #git commit -m "bump key build public"
-            #git push
       - name: Store targets
         if: ${{ env.HAVE_TOKEN_KEY_PRIVATE != 'true' }}
         uses: actions/upload-artifact@v3
