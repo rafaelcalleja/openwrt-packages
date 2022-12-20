@@ -40,19 +40,6 @@ jobs:
             ./staging_dir/host/bin/usign -G -s /artifacts/keys/key-build -p /artifacts/keys/key-build.pub -c "build key ${{ env.GITHUB_REPOSITORY }}:${{ github.sha }}"
             FINGERPRINT=$(./staging_dir/host/bin/usign -F -p /artifacts/keys/key-build.pub)
             mv /artifacts/keys/key-build.pub /artifacts/keys/$FINGERPRINT
-            type -p curl >/dev/null || sudo apt install curl -y
-            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
-            sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
-            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-            sudo apt update
-            sudo apt install gh -y
-            cd /artifacts
-            export KEY_BUILD=$(cat /artifacts/keys/key-build)"
-            export KEY_BUILD_PUBLIC=$(cat /artifacts/keys/$FINGERPRINT)"
-            gh auth login
-            gh secret set TOKEN_KEY_BUILD_PRIVATE --body "$KEY_BUILD"
-            gh secret set TOKEN_KEY_BUILD_PUBLIC --body "$KEY_BUILD_PUBLIC"
-            rm /artifacts/keys/key-build
       - run: sudo chown -R --reference=${{ steps.inputs.outputs.artifacts_dir }}/.. ${{ steps.inputs.outputs.artifacts_dir }}
         shell: bash
       - name: Store targets
@@ -67,6 +54,12 @@ jobs:
         with:
           name: generate-keys-${{ github.run_id }}
           path: keys/
+      - name: Generate Secrets
+        run : |
+          export KEY_BUILD=$(cat keys/key-build)"
+          gh auth login
+          gh secret set TOKEN_KEY_BUILD_PRIVATE --body "$KEY_BUILD"
+          rm /artifacts/keys/key-build
       - name: Commit Keys
         run: |
           find keys/
