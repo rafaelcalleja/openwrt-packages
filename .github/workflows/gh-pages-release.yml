@@ -6,7 +6,9 @@ on:
       - main
       - 'openwrt-*'
 
-permissions: write-all
+permissions:
+  id-token: write
+  metadata: write
 
 jobs:
   key-generation:
