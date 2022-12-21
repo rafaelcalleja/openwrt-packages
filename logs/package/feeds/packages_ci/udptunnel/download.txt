@@ -1,18 +1,0 @@
-make[2]: Entering directory '/feed/net/udptunnel'
-mkdir -p /home/build/openwrt/dl
-SHELL= flock /home/build/openwrt/tmp/.udptunnel-0.0.1.tar.xz.flock -c '  	/home/build/openwrt/scripts/download.pl "/home/build/openwrt/dl" "udptunnel-0.0.1.tar.xz" "3d3647c68782107b78dbcd98274b70475862d1646635e470c766db24795172f7" "" || (  /home/build/openwrt/scripts/dl_github_archive.py --dl-dir="/home/build/openwrt/dl" --url="https://github.com/rfc1036/udptunnel.git" --version="482ed94388a0dde68561584926c7d5c14f079f7e" --subdir="udptunnel-0.0.1" --source="udptunnel-0.0.1.tar.xz" --hash="3d3647c68782107b78dbcd98274b70475862d1646635e470c766db24795172f7" || ( 	echo "Checking out files from the git repository..."; mkdir -p /home/build/openwrt/tmp/dl && cd /home/build/openwrt/tmp/dl && rm -rf udptunnel-0.0.1 && [ \! -d udptunnel-0.0.1 ] && git clone  https://github.com/rfc1036/udptunnel.git udptunnel-0.0.1 && (cd udptunnel-0.0.1 && git checkout 482ed94388a0dde68561584926c7d5c14f079f7e && git submodule update --init --recursive) && echo "Packing checkout..." && export TAR_TIMESTAMP=`cd udptunnel-0.0.1 && git log -1 --format='\''@%ct'\''` && rm -rf udptunnel-0.0.1/.git && 	tar --numeric-owner --owner=0 --group=0 --mode=a-s --sort=name ${TAR_TIMESTAMP:+--mtime="$TAR_TIMESTAMP"} -c udptunnel-0.0.1 | 	xz -zc -7e > /home/build/openwrt/tmp/dl/udptunnel-0.0.1.tar.xz && mv /home/build/openwrt/tmp/dl/udptunnel-0.0.1.tar.xz /home/build/openwrt/dl/ && rm -rf udptunnel-0.0.1; );  )    '
-+ curl -f --connect-timeout 20 --retry 5 --location --insecure https://sources.openwrt.org/udptunnel-0.0.1.tar.xz
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-curl: (22) The requested URL returned error: 404 Not Found
-Download failed.
-+ curl -f --connect-timeout 20 --retry 5 --location --insecure https://mirror2.openwrt.org/sources/udptunnel-0.0.1.tar.xz
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-curl: (22) The requested URL returned error: 404 Not Found
-Download failed.
-No more mirrors to try - giving up.
-make[2]: Leaving directory '/feed/net/udptunnel'
-time: package/feeds/packages_ci/udptunnel/download#0.30#0.11#1.55

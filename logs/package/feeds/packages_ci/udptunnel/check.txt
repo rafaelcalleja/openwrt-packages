@@ -1,3 +1,0 @@
-make[2]: Entering directory '/feed/net/udptunnel'
-make[2]: Leaving directory '/feed/net/udptunnel'
-time: package/feeds/packages_ci/udptunnel/check#0.01#0.00#0.01
