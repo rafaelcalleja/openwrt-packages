@@ -1,5 +1,7 @@
 # OpenWrt custom packages feed
 
+List package repository: https://rafaelcalleja.github.io/openwrt-packages/resources/
+
 ## Description
 
 GitHub Pages repository for my own OpenWrt binary packages feed.
