@@ -199,7 +199,8 @@ jobs:
           git checkout gh-pages 
           mkdir -p "resources/${{ env.BRANCH }}/targets" -p
           cp -R bin/targets/* "resources/${{ env.BRANCH }}/targets"
+          ./scripts/make-index-html.sh ./resources/
           git config user.name  github-actions
           git config user.email github-actions@github.com
-          git add resources
+          git add -A
           (git commit -m "bump packages" && git push) || true        
