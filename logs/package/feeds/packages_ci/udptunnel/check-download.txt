@@ -1,0 +1,136 @@
+GNU Make 4.2.1
+Built for x86_64-pc-linux-gnu
+Copyright (C) 1988-2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Reading makefiles...
+Reading makefile 'Makefile'...
+Reading makefile '/home/build/openwrt/rules.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/.config' (search path) (don't care) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/debug.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/verbose.mk' (search path) (no ~ expansion)...
+make[2]: Entering directory '/feed/net/udptunnel'
+Reading makefile '/home/build/openwrt/staging_dir/toolchain-mipsel_24kc_gcc-8.4.0_musl/info.mk' (search path) (don't care) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/package.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/download.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/hardening.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/prereq.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/unpack.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/depends.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/quilt.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/package-defaults.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/package-dumpinfo.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/package-ipkg.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/feeds.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/tmp/.packageauxvars' (search path) (don't care) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/package-bin.mk' (search path) (no ~ expansion)...
+Reading makefile '/home/build/openwrt/include/autotools.mk' (search path) (no ~ expansion)...
+Updating makefiles....
+ Considering target file '/home/build/openwrt/include/autotools.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/autotools.mk'.
+  No implicit rule found for '/home/build/openwrt/include/autotools.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/autotools.mk'.
+ No need to remake target '/home/build/openwrt/include/autotools.mk'.
+ Considering target file '/home/build/openwrt/include/package-bin.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/package-bin.mk'.
+  No implicit rule found for '/home/build/openwrt/include/package-bin.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/package-bin.mk'.
+ No need to remake target '/home/build/openwrt/include/package-bin.mk'.
+ Considering target file '/home/build/openwrt/tmp/.packageauxvars'.
+  Looking for an implicit rule for '/home/build/openwrt/tmp/.packageauxvars'.
+  No implicit rule found for '/home/build/openwrt/tmp/.packageauxvars'.
+  Finished prerequisites of target file '/home/build/openwrt/tmp/.packageauxvars'.
+ No need to remake target '/home/build/openwrt/tmp/.packageauxvars'.
+ Considering target file '/home/build/openwrt/include/feeds.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/feeds.mk'.
+  No implicit rule found for '/home/build/openwrt/include/feeds.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/feeds.mk'.
+ No need to remake target '/home/build/openwrt/include/feeds.mk'.
+ Considering target file '/home/build/openwrt/include/package-ipkg.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/package-ipkg.mk'.
+  No implicit rule found for '/home/build/openwrt/include/package-ipkg.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/package-ipkg.mk'.
+ No need to remake target '/home/build/openwrt/include/package-ipkg.mk'.
+ Considering target file '/home/build/openwrt/include/package-dumpinfo.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/package-dumpinfo.mk'.
+  No implicit rule found for '/home/build/openwrt/include/package-dumpinfo.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/package-dumpinfo.mk'.
+ No need to remake target '/home/build/openwrt/include/package-dumpinfo.mk'.
+ Considering target file '/home/build/openwrt/include/package-defaults.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/package-defaults.mk'.
+  No implicit rule found for '/home/build/openwrt/include/package-defaults.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/package-defaults.mk'.
+ No need to remake target '/home/build/openwrt/include/package-defaults.mk'.
+ Considering target file '/home/build/openwrt/include/quilt.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/quilt.mk'.
+  No implicit rule found for '/home/build/openwrt/include/quilt.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/quilt.mk'.
+ No need to remake target '/home/build/openwrt/include/quilt.mk'.
+ Considering target file '/home/build/openwrt/include/depends.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/depends.mk'.
+  No implicit rule found for '/home/build/openwrt/include/depends.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/depends.mk'.
+ No need to remake target '/home/build/openwrt/include/depends.mk'.
+ Considering target file '/home/build/openwrt/include/unpack.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/unpack.mk'.
+  No implicit rule found for '/home/build/openwrt/include/unpack.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/unpack.mk'.
+ No need to remake target '/home/build/openwrt/include/unpack.mk'.
+ Considering target file '/home/build/openwrt/include/prereq.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/prereq.mk'.
+  No implicit rule found for '/home/build/openwrt/include/prereq.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/prereq.mk'.
+ No need to remake target '/home/build/openwrt/include/prereq.mk'.
+ Considering target file '/home/build/openwrt/include/hardening.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/hardening.mk'.
+  No implicit rule found for '/home/build/openwrt/include/hardening.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/hardening.mk'.
+ No need to remake target '/home/build/openwrt/include/hardening.mk'.
+ Considering target file '/home/build/openwrt/include/download.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/download.mk'.
+  No implicit rule found for '/home/build/openwrt/include/download.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/download.mk'.
+ No need to remake target '/home/build/openwrt/include/download.mk'.
+ Considering target file '/home/build/openwrt/include/package.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/package.mk'.
+  No implicit rule found for '/home/build/openwrt/include/package.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/package.mk'.
+ No need to remake target '/home/build/openwrt/include/package.mk'.
+ Considering target file '/home/build/openwrt/staging_dir/toolchain-mipsel_24kc_gcc-8.4.0_musl/info.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/staging_dir/toolchain-mipsel_24kc_gcc-8.4.0_musl/info.mk'.
+  No implicit rule found for '/home/build/openwrt/staging_dir/toolchain-mipsel_24kc_gcc-8.4.0_musl/info.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/staging_dir/toolchain-mipsel_24kc_gcc-8.4.0_musl/info.mk'.
+ No need to remake target '/home/build/openwrt/staging_dir/toolchain-mipsel_24kc_gcc-8.4.0_musl/info.mk'.
+ Considering target file '/home/build/openwrt/include/verbose.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/verbose.mk'.
+  No implicit rule found for '/home/build/openwrt/include/verbose.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/verbose.mk'.
+ No need to remake target '/home/build/openwrt/include/verbose.mk'.
+ Considering target file '/home/build/openwrt/include/debug.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/include/debug.mk'.
+  No implicit rule found for '/home/build/openwrt/include/debug.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/include/debug.mk'.
+ No need to remake target '/home/build/openwrt/include/debug.mk'.
+ Considering target file '/home/build/openwrt/.config'.
+  Looking for an implicit rule for '/home/build/openwrt/.config'.
+  No implicit rule found for '/home/build/openwrt/.config'.
+  Finished prerequisites of target file '/home/build/openwrt/.config'.
+ No need to remake target '/home/build/openwrt/.config'.
+ Considering target file '/home/build/openwrt/rules.mk'.
+  Looking for an implicit rule for '/home/build/openwrt/rules.mk'.
+  No implicit rule found for '/home/build/openwrt/rules.mk'.
+  Finished prerequisites of target file '/home/build/openwrt/rules.mk'.
+ No need to remake target '/home/build/openwrt/rules.mk'.
+ Considering target file 'Makefile'.
+  Looking for an implicit rule for 'Makefile'.
+  No implicit rule found for 'Makefile'.
+  Finished prerequisites of target file 'Makefile'.
+ No need to remake target 'Makefile'.
+Updating goal targets....
+Considering target file '.download'.
+ File '.download' does not exist.
+ Finished prerequisites of target file '.download'.
+Must remake target '.download'.
+Successfully remade target file '.download'.
+make[2]: Leaving directory '/feed/net/udptunnel'
