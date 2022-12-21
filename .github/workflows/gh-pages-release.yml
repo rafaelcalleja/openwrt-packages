@@ -75,6 +75,11 @@ jobs:
           git add .keys/*
           git commit -m "bump key build public"
           git push
+          git checkout gh-pages
+          find keys/ -maxdepth 1 -type f |head -1|xargs -i cp {} public.key
+          git add public.key
+          git commit -m "bump key build public"
+          git push
   pages-release:
     needs:
       - key-generation
